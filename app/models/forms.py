@@ -5,6 +5,7 @@ class Form(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(200))
     creator = db.Column(db.String(100))
+    creator_login = db.Column(db.String(100))
     description = db.Column(db.String(400))
     time = db.Column(db.String(100))
     questions = db.Column(db.String(300))

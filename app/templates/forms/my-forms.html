@@ -18,25 +18,25 @@
 
 {% block main %}
 <h1>Все тесты ваши тесты</h1>
-        {% for form in forms%}
-        <h1>{{form.name}}</h1>
-            <table>
+    {% for data in form_data %}
+        <h1>{{ data.form.name }}</h1>
+        <table>
+            <tr>
+                <th>Кто сделал</th>
+                <th>Баллы</th>
+            </tr>
+            {% if data.results %}
+                {% for result in data.results %}
                 <tr>
-                    <th>Кто сделал</th>
-                    <th>Баллы</th>
-                </tr>
-                {% if form.dids%}
-                {% for i in form.dids %}
-                <tr>
-                    <td>{{ i }}</td>
-                    <td>{{ form.scores[form.dids.index(i)] }}</td>
+                    <td>{{ result.user }}</td>
+                    <td>{{ result.score }}</td>
                 </tr>
                 {% endfor %}
-                {% else %}
+            {% else %}
                 <tr>
                     <td colspan="2">Эту форму ещё не выполняли</td>
                 </tr>
-            </table>
-                {% endif %}
-            {% endfor %}
+            {% endif %}
+        </table>
+    {% endfor %}
 {% endblock %}

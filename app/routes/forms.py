@@ -29,7 +29,7 @@ def add_form():
                         else: answers = answers + '~;'
                         i+=1
                     except: break
-                form = Form(name = request.form.get('name'), creator = current_user.name, description = request.form.get('desc'), time = request.form.get('time'), questions = names, answers_to_questions = answers)
+                form = Form(name = request.form.get('name'), creator = current_user.name, creator_login = current_user.login, description = request.form.get('desc'), time = request.form.get('time'), questions = names, answers_to_questions = answers)
                 db.session.add(form)
                 db.session.commit()
                 flash('Вы успешно создали форму!', 'succes')
@@ -52,8 +52,12 @@ def form(id):
                 if answers_to_questions[i]!='~' and request.form.get(f'que{i}')==answers_to_questions[i]:
                     score +=1
             if form.dids: 
-                form.dids = form.dids.append(current_user.name)
-                form.scores = form.scores.append(str(score))
+                dids = list(form.dids)
+                dids+=[current_user.name]
+                form.dids = dids
+                scores = list(form.scores)
+                scores+=[str(score)]
+                form.scores = scores
             else: 
                 form.dids = [current_user.name]
                 form.scores = [str(score)]
@@ -74,9 +78,23 @@ def form(id):
 @forms.route('/my-forms')
 def my_forms():
     try:
-        form = Form.query.filter_by(creator = current_user.name).all()
-        lenght = len(form)
-        return render_template("forms/my-forms.html", forms = form, lenght = lenght, is_auth=current_user.name)
+        forms = Form.query.filter_by(creator_login=current_user.login).all()
+        form_data = []
+        for form in forms:
+            results = []
+            if form.dids and form.scores:
+                lenght = len(form.dids)
+                for i in range(lenght):
+                    results.append({
+                        'user': form.dids[i],
+                        'score': form.scores[i]
+                    })
+            form_data.append({
+                'form': form,
+                'results': results
+            })
+        
+        return render_template("forms/my-forms.html", form_data = form_data, length = lenght, is_auth = current_user.name)
     except: 
         flash('У вас ещё нет форм', 'alert')
         return redirect('/all-forms')
