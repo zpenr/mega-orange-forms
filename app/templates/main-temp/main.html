@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block style %}{% endblock %}
+    <link rel="icon" href="{{ url_for('static' , filename = 'images/pluginlogo_32x32.png')}}" type="image/png">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <div class="page">
+    <header>
+        
+        <a href="{{ url_for('main.index') }}"><img src="{{ url_for('static', filename = 'images/logo.png')}}" class="logo"></a>
+        <a href="{{ url_for('forms.all_forms')}}"><button class = "button-all-forms">All forms</button></a>
+        {% block headerButton %}{% endblock %}
+    </header>
+    <main>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+        {% block main %}{% endblock %}
+    </main>
+    <footer>    
+        <span class="footer">
+        <a class="footer-about">About</a>
+        <a class="footer-Contacts">Contacts</a>
+        <a href="{{ url_for('forms.all_forms')}}" class="footer-All-forms">All forms</a>
+        </span>
+        <hr>
+        <span class="footer">
+            Mega Orange Forms - 2025
+        </span>
+    </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+{% extends 'main-temp/main.html' %} 
+{% block title %}Вход{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename = 'styles/css/login-sign-up.css')}}">
+{% endblock %}
+
+{% block headerButton %}
+    {% if is_auth %}
+
+        <a href="{{ url_for('user.logout')}}"><button class="logout">Выйти</button></a>
+        <p class = 'name'> Привет, {{ is_auth }}</p>
+        <a href="{{ url_for('forms.add_form')}}"><button class="add-form-btn">Создать форму</button></a>
+        <a href = "{{ url_for('forms.my_forms')}}"><button class = "my-forms-btn">Мои формы</button></a>
+    {% else %}
+        <a href="{{ url_for('user.login')}}"><button class="login">Login</button></a>
+        <a href="{{ url_for('user.create_user')}}"><button class="signup">Sign Up</button></a>
+    {% endif %}
+{% endblock %}
+{% block main %}
+        <div class = "login-sign-up">
+            <form method="post">
+                <table>
+                    <tr>
+                        <td colspan="2"><h1>{{name}}</h1></td>
+                    </tr>
+                    {% for i in range(num) %}
+                    <tr>
+                        <td><label>{{questions[i]}}</label></td>
+                        <td>
+                            <input name = 'que{{i}}' type = 'text' required>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                        <td colspan="2"><h5><input type="submit" class = "submit" value="Отправить"></h5></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+{% endblock %}

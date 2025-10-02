@@ -1,0 +1,154 @@
+body{
+    overflow-x: hidden;
+    background-color: rgb(112, 155, 202);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+a, a:hover{
+    color: rgb(36, 36, 36);
+}
+.page{
+    overflow-y: hidden;
+    overflow-x: hidden;
+    min-height: 98vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* ALL FOR HEADER */
+header{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: 0px;
+    background-color: rgb(58, 96, 136);
+    height: 70pt;
+}
+.button-all-forms{
+    float: left;
+    margin-top: 20pt;
+    font-size: 20pt;
+    background-color: rgb(226, 151, 38);
+    border: 0 solid;
+}
+.logo{
+    float: left;
+    margin: 10pt;
+    width: 150pt;
+}
+.login{
+    border: 0pt solid;
+    font-size: 20pt;
+    margin: 10pt;
+    margin-top: 20pt;
+    background-color: rgb(226, 151, 38);
+    float: right;
+}
+.signup{
+    border: 0pt solid;
+    border-radius: 5pt;
+    color: rgb(226, 151, 38);
+    font-size: 20pt;
+    margin: 10pt;
+    margin-top: 20pt;
+    background-color: transparent;
+    float: right;
+}
+.name{
+    margin-top: 22pt;
+    color: rgb(226, 151, 38);
+    padding-right: 10pt;
+    float: right;
+}
+.logout{
+    border: 0pt solid;
+    font-size: 20pt;
+    margin: 10pt;
+    margin-top: 20pt;
+    background-color: rgb(226, 151, 38);
+    float: right;
+}
+.add-form-btn{
+    border: 0pt solid;
+    border-radius: 5pt;
+    color: rgb(226, 151, 38);
+    font-size: 20pt;
+    margin: 10pt;
+    margin-top: 20pt;
+    background-color: transparent;
+}
+.my-forms-btn{
+    border: 0pt solid;
+    font-size: 20pt;
+    margin: 10pt;
+    margin-top: 20pt;
+    background-color: rgb(226, 151, 38);
+}
+
+
+/* ALL FOR MAIN */
+main{
+    color: rgb(36, 36, 36);
+    flex: 1 1 auto;
+    margin: 0 auto;
+    margin-top: 70pt;
+    margin-bottom: 60pt;
+    max-width: 80vw;
+}
+h1{
+    text-align: center;
+}
+h5{
+    text-align: center;
+}
+fieldset{
+    border: 0 solid;
+}
+form{
+    border: 2px solid rgb(226, 151, 38);
+}
+.submit{
+    font-size: 15pt;
+    background-color: rgb(226, 151, 38);
+    border: 0px solid;
+}
+input{background-color: rgb(184, 210, 238)}
+textarea{
+    background-color: rgb(184, 210, 238);
+    resize: none;
+}
+.alert-succes{
+    border: 2pt solid rgb(96, 227, 25);
+    border-radius: 10pt;
+    background-color: rgb(111, 189, 90);
+    text-align: center;
+    font-size: 15pt;
+}
+.alert-alert{
+    border: 2pt solid rgb(227, 35, 25);
+    border-radius: 10pt;
+    background-color: rgb(189, 95, 90);
+    text-align: center;
+    font-size: 15pt;
+}
+
+
+
+/* ALL FOR FOOTER */
+footer{
+    width: 100vw;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    height: 50pt;
+    text-align: center;
+}
+.footer{
+    bottom: 0;
+}
+.footer-about, .footer-Contacts, .footer-All-forms{
+    font-size: 13pt;
+    margin-left: 10pt;
+}

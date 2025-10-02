@@ -1,0 +1,26 @@
+{% extends 'main-temp/main.html' %} 
+{% block title %}Главная{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename = 'styles/css/main.css')}}">
+{% endblock %}
+
+{% block headerButton %}
+    {% if is_auth %}
+
+        <a href="{{ url_for('user.logout')}}"><button class="logout">Выйти</button></a>
+        <p class = 'name'> Привет, {{ is_auth }}</p>
+        <a href="{{ url_for('forms.add_form')}}"><button class="add-form-btn">Создать форму</button></a>
+        <a href = "{{ url_for('forms.my_forms')}}"><button class = "my-forms-btn">Мои формы</button></a>
+    {% else %}
+        <a href="{{ url_for('user.login')}}"><button class="login">Login</button></a>
+        <a href="{{ url_for('user.create_user')}}"><button class="signup">Sign Up</button></a>
+    {% endif %}
+{% endblock %}
+{% block main %}
+<h1>
+    <p>Добро пожаловать на Mega Orange Forms!!!</p>
+    <p>Здесь вы можете пройти множество тестов и опросников</p>
+    <p>Для этого вам нужно зарегестрироваться или войти в систему, затем перейдите на страницу со всеми формами и перейдите на нужную форму, для этого нажмите на название формы.</p>
+</h1>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'main-temp/main.html' %} 
+{% block title %}Добавление формы{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename = 'styles/css/login-sign-up.css')}}">
+{% endblock %}
+
+{% block headerButton %}
+    {% if is_auth %}
+
+        <a href="{{ url_for('user.logout')}}"><button class="logout">Выйти</button></a>
+        <p class = 'name'> Привет, {{ is_auth }}</p>
+        <a href = "{{ url_for('forms.my_forms')}}"><button class = "my-forms-btn">Мои формы</button></a>
+    {% else %}
+        <a href="{{ url_for('user.login')}}"><button class="login">Login</button></a>
+        <a href="{{ url_for('user.create_user')}}"><button class="signup">Sign Up</button></a>
+    {% endif %}
+{% endblock %}
+{% block main %}
+<div class = "login-sign-up">
+    <form method="post">
+        {% if num %}
+        <table>
+            <tr>
+                <td><label>Название</label></td>
+                <td><input name = "name" type="text" class = "login-text" required></td>
+            </tr>
+            <tr>
+                <td><label>Описание</label></td>
+                <td><input name = "desc" type="text" class = "login-text" required></td>
+            </tr>
+            <tr>
+                <td><label>Время выполнения</label></td>
+                <td><input name = "time" type="text" class = "login-text" required></td>
+            </tr>
+        </table>
+        {% endif %}
+        <table>
+            {% if num %}
+            <tr>
+                <td>№ вопроса</td>
+                <td>Вопрос</td>
+                <td>Правильный ответ, если нет оставить пустым</td>
+            </tr>
+            {% for i in range(num) %}
+            <tr>
+                <td><label>{{i+1}}</label></td>
+                <td><input name = "name{{i}}"  type="text" class = "login-text" required></td>
+                <td><input name = 'ans{{i}}' type="text" class = "login-text"></td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="2"><h1>Выберите первичные настройки опросника</h1></td>
+            </tr>
+            <tr>
+                <td><label>Количество вопросов</label></td>
+                <td><input name = "num" type="text" class = "login-text" required></td>
+            </tr>
+            {% endif %}
+        </table>
+        <input type="submit">
+    </form>
+</div>
+{% endblock %}

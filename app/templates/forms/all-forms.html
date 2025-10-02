@@ -1,0 +1,40 @@
+{% extends 'main-temp/main.html' %} 
+{% block title %}Все формы{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename = 'styles/css/all-forms.css')}}">
+{% endblock %}
+
+{% block headerButton %}
+    {% if is_auth %}
+        <a href="{{ url_for('user.logout')}}"><button class="logout">Выйти</button></a>
+        <p class = 'name'> Привет, {{ is_auth }}</p>
+        <a href="{{ url_for('forms.add_form')}}"><button class="add-form-btn">Создать форму</button></a>
+        <a href = "{{ url_for('forms.my_forms')}}"><button class = "my-forms-btn">Мои формы</button></a>
+    {% else %}
+        <a href="{{ url_for('user.login')}}"><button class="login">Login</button></a>
+        <a href="{{ url_for('user.create_user')}}"><button class="signup">Sign Up</button></a>
+    {% endif %}
+{% endblock %}
+
+{% block main %}
+<h1>Все тесты, которые представлены сейчас на нашем сайте</h1>
+        <table>
+            <tr>
+                <th>№</th>
+                <th>Название</th>
+                <th>Автор</th>
+                <th>Описание</th>
+                <th>Примерное время прохождения</th>
+            </tr>
+            {% for form in forms%}
+            <tr>
+                <td>{{form.id}}</td>
+                <td><a href="{{ url_for('forms.form' , id = form.id)}}">{{ form.name }}</a></td>
+                <td>{{ form.creator }}</td>
+                <td>{{ form.description }}</td>
+                <td>{{ form.time }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+{% endblock %}
